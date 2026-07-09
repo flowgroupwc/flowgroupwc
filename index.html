@@ -80,6 +80,12 @@
         .btn-navy:hover  { border-color: var(--navy); color: var(--navy); transform: translateY(-2px); }
         .btn-navy:active { transform: scale(0.98) translateY(0); }
 
+        /* Prevent grid/flex columns from refusing to shrink below their content's
+           natural width — the #1 cause of invisible horizontal overflow on mobile,
+           since content gets clipped by the page-level overflow-x:hidden instead of
+           wrapping or becoming reachable. */
+        .hero-grid > div, .hero-right, .comparison-scroll { min-width: 0; }
+
         /* ─── Hero image ─── */
         .hero-img-wrap { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(27,60,110,0.18); }
         .hero-img-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
@@ -348,8 +354,8 @@
         </div>
 
         <!-- Right — Comparison Chart -->
-        <div class="hero-right anim-slideR d2" style="display:flex;align-items:center;">
-            <div class="comparison-scroll" style="width:100%;">
+        <div class="hero-right anim-slideR d2" style="display:flex;align-items:center;min-width:0;">
+            <div class="comparison-scroll" style="width:100%;min-width:0;">
             <div class="comparison-table" style="background:#fff;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 64px rgba(27,60,110,0.12);width:100%;overflow:hidden;">
 
                 <!-- Chart header -->
